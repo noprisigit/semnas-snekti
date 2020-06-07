@@ -25,6 +25,11 @@
     <?php foreach($file_css as $css) : ?>
     <link rel="stylesheet" href="<?= base_url() . $css; ?>">
     <?php endforeach; ?>
+    <style>
+        .zoom:hover {
+            transform: scale(1.8);
+        }
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

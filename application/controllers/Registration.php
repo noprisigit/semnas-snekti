@@ -169,16 +169,16 @@ class Registration extends CI_Controller {
         if ($this->upload->do_upload('inputBuktiBayar')) {
             $data = $this->upload->data();
 
+            $res['status'] = true;
             $this->db->set('bukti_bayar', $data['file_name']);
+            $this->db->set('status_pembayaran', 1);
+            $this->db->where('kode', $this->input->post('inputKode'));
+            $this->db->update('registrasi');
         } else {
             $res['status'] = false;
             $res['msg'] = $this->upload->display_errors();
         }
 
-        $res['status'] = true;
-        $this->db->set('status_pembayaran', 1);
-        $this->db->where('kode', $this->input->post('inputKode'));
-        $this->db->update('registrasi');
         echo json_encode($res);
     }
 }

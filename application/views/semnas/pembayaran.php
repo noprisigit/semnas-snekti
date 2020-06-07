@@ -93,7 +93,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <img id="imgBuktiBayar" class="img-fluid d-flex mx-auto" width="200" src="" alt="bukti-bayar">
+                <img id="imgBuktiBayar" class="img-fluid d-flex mx-auto zoom" width="200" src="" alt="bukti-bayar">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

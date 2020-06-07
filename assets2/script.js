@@ -208,6 +208,11 @@ $('.btn-delete-pemakalah').on('click', function(event) {
     })
 }); 
 
+$(document).on('click', '#enlargeImage', function() {
+    $('#modalEnlargeImage').modal('show');
+    $('#imgBuktiBayar').attr('src', '../../assets/images/bukti-bayar/' + $(this).data('img'));
+});
+
 $('#enlargeImage').on('click', function() {
     $('#modalEnlargeImage').modal('show');
     $('#imgBuktiBayar').attr('src', '../../assets/images/bukti-bayar/' + $(this).data('img'));

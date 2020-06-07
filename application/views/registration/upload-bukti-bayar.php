@@ -80,6 +80,9 @@
                   <input type="file" name="inputBuktiBayar" id="inputBuktiBayar" class="form-control" accept="image/png, image/jpeg, image/jpg">
                </div>
                <button type="submit" class="btn btn-primary" id="btnUploadBuktiBayar">Upload Bukti</button>
+               <div id="submitLoader" style="display: none;">
+                  <img src="<?= base_url('assets/images/waiting.gif') ?>" class="" width="120">
+               </div>
             </form>
          </div>
       </div>

