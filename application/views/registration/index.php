@@ -25,31 +25,31 @@
                 <div class="col-md-8">
                     <div class="form-group">
                         <label style="font-size: 15px; font-weight: 400" for="NamaLengkap">Nama Lengkap</label>
-                        <input type="text" class="form-control" name="namalengkap" id="namalengkap" placeholder="Nama Lengkap">
+                        <input type="text" class="form-control" name="namalengkap" id="namalengkap" value="<?= set_value('namalengkap') ?>" placeholder="Nama Lengkap">
                         <?php echo form_error('namalengkap', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label style="font-size: 15px; font-weight: 400" for="AsalInstansi">Asal Instansi</label>
-                        <input type="text" class="form-control" id="asalinstansi" name="asalinstansi" placeholder="Asal Instansi">
+                        <input type="text" class="form-control" id="asalinstansi" name="asalinstansi" value="<?= set_value('asalinstansi') ?>" placeholder="Asal Instansi">
                         <?php echo form_error('asalinstansi', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="JenisKelamin">Jenis Kelamin</label>
-                        <select class="form-control" id="jeniskelamin" name="jeniskelamin">
+                        <select class="form-control" id="jeniskelamin" name="jeniskelamin" value="<?= set_value('jeniskelamin') ?>">
                             <option value="" selected disabled>--Jenis Kelamin--</option>
-                            <option value="Laki-Laki">Laki - Laki</option>
-                            <option value="Perempuan">Perempuan</option>
+                            <option value="Laki-Laki" <?= set_select('jeniskelamin', 'Laki-Laki', (!empty($jnsKelamin) && $jnsKelamin == "Laki-Laki" ? TRUE : FALSE)); ?>>Laki - Laki</option>
+                            <option value="Perempuan" <?= set_select('jeniskelamin', 'Perempuan', (!empty($jnsKelamin) && $jnsKelamin == "Perempuan" ? TRUE : FALSE)); ?>>Perempuan</option>
                         </select>
                         <?php echo form_error('jeniskelamin', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label style="font-size: 15px; font-weight: 400" for="Email">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                        <input type="email" class="form-control" id="email" name="email" value="<?= set_value('email') ?>" placeholder="Email">
                         <?php echo form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label style="font-size: 15px; font-weight: 400" for="NoTelp">No. Telp/HP</label>
-                        <input type="text" class="form-control" id="notelp" name="notelp" placeholder="No. Telp/HP">
+                        <input type="text" class="form-control" id="notelp" name="notelp" value="<?= set_value('notelp') ?>" placeholder="No. Telp/HP">
                         <?php echo form_error('notelp', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="contact-frm-btn">

@@ -74,7 +74,7 @@ class Registration extends CI_Controller {
     }
 
     private function _generatecode($length) {
-        $str_result = "0123456789";
+        $str_result = "0123456789876543210";
         return substr(str_shuffle($str_result), 0, $length);
     }
 
@@ -88,8 +88,11 @@ class Registration extends CI_Controller {
         $this->form_validation->set_rules('jeniskelamin', 'Jenis Kelamin', 'trim|required',
             ['required' => 'Jenis Kelamin Harus Diisi']
         );
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email', 
-            ['required' => 'Email Harus Diisi']
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[registrasi.email]', 
+            [
+                'required' => 'Email Harus Diisi',
+                'is_unique' => 'Email ini telah terdaftar'
+            ]
         );
         $this->form_validation->set_rules('notelp', 'No Telepon/HP', 'trim|required|numeric',
             ['required' => 'No Telephone Harus Diisi']
@@ -97,36 +100,20 @@ class Registration extends CI_Controller {
 
         if($this->form_validation->run() == false) {
             $data['title'] = "Registrasi Semnas";
+            $data['jnsKelamin'] = $this->input->post('jeniskelamin');
             
             $this->load->view('template/header', $data);
             $this->load->view('registration/index');
             $this->load->view('template/footer');
         } else {
             $kode = $this->_generatecode(5);
-            $data = $this->db->query('select * from registrasi where kode='. $kode);
-            $count = $data->num_rows();
-
-            if( $count < 1 ) {
-                $code = $kode;
+            $peserta = $this->db->get_where('registrasi', ['kode' => $kode])->num_rows();
+            if ($peserta > 0) {
+                $kode = $this->_generatecode(5);
             }
-            // $code = _generatecode();
-            // echo $code;
-            // die;
-
-            // $query = $this->db->get('registrasi')->result_array();
-            // $row = $query->num_rows();
-
-            // if($row <> 0) {
-            //     $index = $row + 1; 
-            // } else {
-            //     $index = 1;
-            // }
-
-            // $create_code = str_pad($index, 4, "0", STR_PAD_LEFT);
-            // $code = "SNEKTI".$create_code;
-            
+        
             $data = [
-                'kode'          =>  $code,
+                'kode'          =>  $kode,
                 'nama_lengkap'  =>  htmlspecialchars($this->input->post('namalengkap')),
                 'asal_instansi' =>  htmlspecialchars($this->input->post('asalinstansi')),
                 'jenis_kelamin' =>  htmlspecialchars($this->input->post('jeniskelamin')),
