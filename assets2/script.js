@@ -217,3 +217,23 @@ $('#enlargeImage').on('click', function() {
     $('#modalEnlargeImage').modal('show');
     $('#imgBuktiBayar').attr('src', '../../assets/images/bukti-bayar/' + $(this).data('img'));
 });
+
+$('.btn-deactivate-account').on('click', function(event) {
+    event.preventDefault();
+    const href = $(this).attr('href');
+    console.log(href);
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Akun ini akan di nonaktifkan!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Matikan Akun'
+    }).then((result) => {
+        if (result.value) {
+            document.location.href = href;
+        }
+    })
+});

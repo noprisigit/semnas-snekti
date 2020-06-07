@@ -34,65 +34,69 @@
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped data-tables">
                                 <thead>
-                                    <tr class="text-center">
+                                    <tr>
                                         <th width="8px">No</th>
-                                        <th>Nama Lengkap</th>
-                                        <th>Username</th>
-                                        <th>Level</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th class="text-center">Nama Lengkap</th>
+                                        <th class="text-center">Username</th>
+                                        <th class="text-center">Level</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $no = 1; ?>
                                     <?php foreach($data_users as $row) : ?>
-                                    <tr>
-                                        <td><?= $no; ?></td>
-                                        <td><?= $row['f_name'] . " " . $row['l_name']; ?></td>
-                                        <td><?= $row['username']; ?></td>
-                                        <td>
-                                            <?php if($row['level'] == 1) : ?>
-                                                <span class="">
-                                                    Root
-                                                </span>
-                                                <?php elseif($row['level'] == 2) : ?>
-                                                <span class="">
-                                                    User
-                                                </span>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td>
-                                            <?php if($row['is_active'] == 1) : ?>
-                                                <center>
-                                                <div class="icheck-primary">
-                                                    <input type="checkbox" id="remember" checked="checked">
-                                                    <label for="remember">
-                                                        Active
-                                                    </label>
-                                                </div>
-                                                </center>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td>
-                                            <center>
-                                                <div class="btn-group btn-group-sm">
-                                                    <button type="button" class="btn btn-success edituser" data-toggle="modal" data-target="#modal-edituser" data-toggle="tooltip" data-placement="top" title="Edit" data-userid="<?= $row['id']; ?>" data-username="<?= $row['username']; ?>" data-fname="<?= $row['f_name']; ?>" data-lname="<?= $row['l_name']; ?>"><i class="fas fa-edit"></i></button>
-                                                    <a href="<?= base_url('admin/deleteuser/') . $row['id']; ?>" class="btn btn-danger deleteuser" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i></a>
-                                                </div>
-                                            </center>
-                                        </td>
-                                    </tr>
+                                        <?php if ($row['username'] != "admin1") : ?>
+                                            <tr>
+                                                <td class="text-center"><?= $no; ?></td>
+                                                <td><?= $row['f_name'] . " " . $row['l_name']; ?></td>
+                                                <td class="text-center"><?= $row['username']; ?></td>
+                                                <td class="text-center">
+                                                    <?php if($row['level'] == 1) : ?>
+                                                        <span class="">
+                                                            Root
+                                                        </span>
+                                                        <?php elseif($row['level'] == 2) : ?>
+                                                        <span class="">
+                                                            User
+                                                        </span>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?php if($row['is_active'] == 1) : ?>
+                                                        <span class="badge badge-success">Aktif</span>
+                                                    <?php else : ?>
+                                                        <span class="badge badge-danger">Tidak Aktif</span>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="btn-group btn-group-md">
+                                                        <?php if($row['is_active'] == 1) : ?>
+                                                            <a href="<?= base_url('admin/deactivate-account/') . $row['id'] ?>" class="btn btn-danger btn-deactivate-account" data-toggle="tooltip" data-placement="top" title="Nonaktifkan Akun"><i class="fas fa-ban"></i></a>
+                                                        <?php else : ?>
+                                                            <a href="<?= base_url('admin/activate-account/') . $row['id'] ?>" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Aktifkan Akun"><i class="fas fa-power-off"></i></a>
+                                                        <?php endif; ?>
+                                                        <button type="button" class="btn btn-info edituser" data-toggle="modal" data-target="#modal-edituser" data-toggle="tooltip" data-placement="top" title="Edit" data-userid="<?= $row['id']; ?>" data-username="<?= $row['username']; ?>" data-fname="<?= $row['f_name']; ?>" data-lname="<?= $row['l_name']; ?>"><i class="fas fa-pencil-alt"></i></button>
+                                                        <a href="<?= base_url('admin/deleteuser/') . $row['id']; ?>" class="btn btn-danger deleteuser" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <?php 
+                                                else : 
+                                                $no--; 
+                                            ?>
+                                        <?php endif; ?>
                                     <?php $no++; ?>
                                     <?php endforeach; ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>No</th>
-                                        <th>Nama Lengkap</th>
-                                        <th>Username</th>
-                                        <th>Level</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th class="text-center">No</th>
+                                        <th class="text-center">Nama Lengkap</th>
+                                        <th class="text-center">Username</th>
+                                        <th class="text-center">Level</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Actions</th>
                                     </tr>
                                 </tfoot>
                             </table>
