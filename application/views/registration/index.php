@@ -20,7 +20,7 @@
         <div class="row justify-content-center">
             <div id="semnas" data-semnas="<?= $this->session->flashdata('msg_semnas'); ?>"></div>
         </div>
-        <form action="<?= base_url('registration/getregist'); ?>" method="post">
+        <form action="<?= base_url('registration'); ?>" method="post">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="form-group">

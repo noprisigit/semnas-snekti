@@ -9,11 +9,54 @@ class Registration extends CI_Controller {
     }
 
     public function index() {
-        $data['title'] = "Registrasi Semnas";
+        $this->form_validation->set_rules('namalengkap', 'Nama Lengkap', 'trim|required', 
+            ['required' => 'Nama Lengkap Harus Diisi']
+        );
+        $this->form_validation->set_rules('asalinstansi', 'Asal Instansi', 'trim|required',
+            ['required' => 'Asal Instansi Harus Diisi']
+        );
+        $this->form_validation->set_rules('jeniskelamin', 'Jenis Kelamin', 'trim|required',
+            ['required' => 'Jenis Kelamin Harus Diisi']
+        );
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[registrasi.email]', 
+            [
+                'required' => 'Email Harus Diisi',
+                'is_unique' => 'Email ini telah terdaftar'
+            ]
+        );
+        $this->form_validation->set_rules('notelp', 'No Telepon/HP', 'trim|required|numeric',
+            ['required' => 'No Telephone Harus Diisi']
+        );
 
-        $this->load->view('template/header', $data);
-        $this->load->view('registration/index');
-        $this->load->view('template/footer');
+        if($this->form_validation->run() == false) {
+            $data['title'] = "Registrasi Semnas";
+            $data['jnsKelamin'] = $this->input->post('jeniskelamin');
+            
+            $this->load->view('template/header', $data);
+            $this->load->view('registration/index');
+            $this->load->view('template/footer');
+        } else {
+            $kode = $this->_generatecode(5);
+            $peserta = $this->db->get_where('registrasi', ['kode' => $kode])->num_rows();
+            if ($peserta > 0) {
+                $kode = $this->_generatecode(5);
+            }
+        
+            $data = [
+                'kode'          =>  $kode,
+                'nama_lengkap'  =>  htmlspecialchars($this->input->post('namalengkap')),
+                'asal_instansi' =>  htmlspecialchars($this->input->post('asalinstansi')),
+                'jenis_kelamin' =>  htmlspecialchars($this->input->post('jeniskelamin')),
+                'email'         =>  htmlspecialchars($this->input->post('email')),
+                'no_telp'       =>  htmlspecialchars($this->input->post('notelp')),
+                'status_bayar'  =>  0,
+				'status_kehadiran' => 0
+            ];
+            
+            $this->db->insert('registrasi', $data);
+            $this->session->set_flashdata('msg_semnas', 'Dilakukan');
+            redirect('registration');
+        }
     }
 
     public function pemakalah() {
@@ -76,57 +119,6 @@ class Registration extends CI_Controller {
     private function _generatecode($length) {
         $str_result = "0123456789876543210";
         return substr(str_shuffle($str_result), 0, $length);
-    }
-
-    public function getregist() {
-        $this->form_validation->set_rules('namalengkap', 'Nama Lengkap', 'trim|required', 
-            ['required' => 'Nama Lengkap Harus Diisi']
-        );
-        $this->form_validation->set_rules('asalinstansi', 'Asal Instansi', 'trim|required',
-            ['required' => 'Asal Instansi Harus Diisi']
-        );
-        $this->form_validation->set_rules('jeniskelamin', 'Jenis Kelamin', 'trim|required',
-            ['required' => 'Jenis Kelamin Harus Diisi']
-        );
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[registrasi.email]', 
-            [
-                'required' => 'Email Harus Diisi',
-                'is_unique' => 'Email ini telah terdaftar'
-            ]
-        );
-        $this->form_validation->set_rules('notelp', 'No Telepon/HP', 'trim|required|numeric',
-            ['required' => 'No Telephone Harus Diisi']
-        );
-
-        if($this->form_validation->run() == false) {
-            $data['title'] = "Registrasi Semnas";
-            $data['jnsKelamin'] = $this->input->post('jeniskelamin');
-            
-            $this->load->view('template/header', $data);
-            $this->load->view('registration/index');
-            $this->load->view('template/footer');
-        } else {
-            $kode = $this->_generatecode(5);
-            $peserta = $this->db->get_where('registrasi', ['kode' => $kode])->num_rows();
-            if ($peserta > 0) {
-                $kode = $this->_generatecode(5);
-            }
-        
-            $data = [
-                'kode'          =>  $kode,
-                'nama_lengkap'  =>  htmlspecialchars($this->input->post('namalengkap')),
-                'asal_instansi' =>  htmlspecialchars($this->input->post('asalinstansi')),
-                'jenis_kelamin' =>  htmlspecialchars($this->input->post('jeniskelamin')),
-                'email'         =>  htmlspecialchars($this->input->post('email')),
-                'no_telp'       =>  htmlspecialchars($this->input->post('notelp')),
-                'status_bayar'  =>  0,
-				'status_kehadiran' => 0
-            ];
-            
-            $this->db->insert('registrasi', $data);
-            $this->session->set_flashdata('msg_semnas', 'Dilakukan');
-            redirect('registration');
-        }
     }
 
     public function upload_bukti_bayar()
