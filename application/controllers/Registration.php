@@ -196,7 +196,7 @@ class Registration extends CI_Controller {
         }
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = "Registrasi Pemakalah P2M";
+            $data['title'] = "Registrasi P2M";
     
             $this->load->view('template/header', $data);
             $this->load->view('registration/reg_p2m');

@@ -84,7 +84,7 @@
 							<li class="nav-item <?= ($title == 'ibea2020') ? 'active' : ''; ?>">
 								<a class="nav-link" href="<?= base_url('page/ibea2020'); ?>">Seminar IBEA 2020</a>
 							</li>
-							<li class="nav-item dropdown <?= ($title == 'Registrasi Pemakalah' or $title == 'Registrasi Semnas' or $title == 'Upload Bukti Bayar') ? 'active' : '';	 ?>">
+							<li class="nav-item dropdown <?= ($title == 'Registrasi Pemakalah' or $title == 'Registrasi Semnas' or $title == 'Upload Bukti Bayar' or $title == 'Registrasi P2M') ? 'active' : '';	 ?>">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
 								 aria-haspopup="true" aria-expanded="false">
 									Submission

@@ -98,7 +98,7 @@
                         <?php echo form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="form-group">
-                        <label for="Upload File">Unggah Makalah (Maskimal 12 MB)</label>
+                        <label for="Upload File">Unggah Makalah (Maksimal 12 MB)</label>
                         <input type="file" class="form-control form-control-file" id="uploadfile" name="uploadfile">
                         <?php echo form_error('uploadfile', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
