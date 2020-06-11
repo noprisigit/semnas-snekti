@@ -245,6 +245,36 @@ class Admin extends CI_Controller {
         }
     }
 
+    public function p2m($request = "peserta") {
+        switch($request) {
+            case 'peserta':
+
+                $url_css = ['assets2/plugins/datatables-bs4/css/dataTables.bootstrap4.css'];
+                $url_js = [
+                    'assets2/plugins/datatables/jquery.dataTables.js',
+                    'assets2/plugins/datatables-bs4/js/dataTables.bootstrap4.js'
+                ];
+        
+                $data['title'] = "Pemakalah PkM";
+                $data['c_title'] = "Data Pemakalah PkM";
+                $data['file_css'] = $url_css;
+                $data['file_js'] = $url_js;
+
+                $data['makalah_p2m'] = $this->db->get('pemakalah_p2m')->result_array();
+                $this->load->view('admin_template/header', $data);
+                $this->load->view('p2m/index', $data);
+                $this->load->view('admin_template/footer');
+                break;
+        }
+    }
+
+    public function getPemakalahPkM()
+    {
+        $id = $this->input->post('id');
+        $p2m = $this->db->get_where('pemakalah_p2m', ['id_pemakalah_p2m' => $id])->row_array();
+        echo json_encode($p2m);
+    }
+
     public function callforpaper($request) {
         switch ($request) {
             case 'peserta':

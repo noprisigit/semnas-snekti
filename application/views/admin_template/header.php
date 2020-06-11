@@ -125,12 +125,23 @@
                                         <p>Data Peserta</p>
                                     </a>
                                 </li>
-                                <!-- <li class="nav-item">
-                                    <a href="<?= base_url('admin/semnas/pembayaran'); ?>" class="nav-link <?= $c_title == 'Data Pembayaran Seminar Nasional' ? 'active' : '' ?>">
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview <?= $title == 'Pemakalah PkM' ? 'menu-open' : '' ?>">
+                            <a href="#" class="nav-link <?= $title == 'Pemakalah PkM' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-paper-plane"></i>
+                                <p>
+                                    PkM
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?= base_url('admin/p2m/peserta'); ?>" class="nav-link <?= $c_title == 'Data Tim Call For Paper' ? 'active' : '' ?>">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Data Pembayaran</p>
+                                        <p>Data Peserta</p>
                                     </a>
-                                </li> -->
+                                </li>
                             </ul>
                         </li>
                         <?php if($this->session->userdata('level') == 1) : ?>

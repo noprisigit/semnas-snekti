@@ -35,6 +35,30 @@
             $('#data-table-semnas').DataTable();
             $('#data-pembayaran-semnas').DataTable();
             $('#data-paper').DataTable();
+            $('#data-p2m').DataTable({
+                "columnDefs": [
+                    {
+                        "targets": [0],
+                        "width": "10px"
+                    },
+                    {
+                        "targets": [1],
+                        "width": "250px"
+                    },
+                    {
+                        "targets": [2],
+                        "width": "180px"
+                    },
+                    {
+                        "targets": [3],
+                        "width": "280px"
+                    },
+                    {
+                        "targets": [4],
+                        "width": "170px"
+                    }
+                ]
+            });
             
             $('#enlargeImage').on('click', function() {
                 $('#modalEnlargeImage').modal('show');
