@@ -162,16 +162,37 @@ class Registration extends CI_Controller {
     }
 
     public function reg_p2m() {
-        $this->form_validation->set_rules('judultim','judul tim', 'trim|required');
-        $this->form_validation->set_rules('namapenulis','nama penulis', 'trim|required');
-        $this->form_validation->set_rules('subtema','sub tema', 'trim|required');
-        $this->form_validation->set_rules('institusi','institusi', 'trim|required');
-        $this->form_validation->set_rules('status','status', 'trim|required');
-        $this->form_validation->set_rules('email','email', 'trim|required');
-        $this->form_validation->set_rules('notelp','no telphone', 'trim|required');
-        $this->form_validation->set_rules('alamat','alamat', 'trim|required');
+        $this->form_validation->set_rules('judultim','Judul makalah', 'trim|required', [
+            'required' => '%s harus diisi'
+        ]);
+        $this->form_validation->set_rules('namapenulis','Nama penulis', 'trim|required', [
+            'required' => '%s harus diisi'
+        ]);
+        $this->form_validation->set_rules('subtema','Kategori PkM', 'trim|required', [
+            'required' => '%s harus diisi'
+        ]);
+        $this->form_validation->set_rules('institusi','institusi', 'trim|required', [
+            'required' => '%s harus diisi'
+        ]);
+        $this->form_validation->set_rules('metode_pelaksanaan','Metode pelaksanaan', 'trim|required', [
+            'required' => '%s harus diisi'
+        ]);
+        $this->form_validation->set_rules('status','Status', 'trim|required', [
+            'required' => '%s harus diisi'
+        ]);
+        $this->form_validation->set_rules('email','Email', 'trim|required', [
+            'required' => '%s harus diisi'
+        ]);
+        $this->form_validation->set_rules('notelp','No telp/HP', 'trim|required', [
+            'required' => '%s harus diisi'
+        ]);
+        $this->form_validation->set_rules('alamat','Alamat', 'trim|required', [
+            'required' => '%s harus diisi'
+        ]);
         if(empty($_FILES['uploadfile']['name'])) {
-            $this->form_validation->set_rules('uploadfile', 'document', 'required');
+            $this->form_validation->set_rules('uploadfile', 'Makalah', 'required', [
+                'required' => '%s harus diunggah'
+            ]);
         }
 
         if ($this->form_validation->run() == false) {
@@ -185,9 +206,10 @@ class Registration extends CI_Controller {
             
             if($upload_makalah) {
                 $config['allowed_types'] = 'pdf|doc|docx';
-                $config['max_size'] = '5000';
+                $config['max_size'] = '12000';
                 $config['file_name'] = $upload_makalah;
-                $config['upload_path'] = './file/p2m';
+                // $config['encrypt_name'] = TRUE;
+                $config['upload_path'] = './file/p2m/';
     
                 $this->load->library('upload', $config);
     
@@ -201,14 +223,15 @@ class Registration extends CI_Controller {
             }
             
             $data = [
-                'judul_tim'         =>  htmlspecialchars($this->input->post('judultim')),
-                'nama_penulis'      =>  htmlspecialchars($this->input->post('namapenulis')),
-                'sub_tema'          =>  htmlspecialchars($this->input->post('subtema')),
-                'institusi'         =>  htmlspecialchars($this->input->post('institusi')),
-                'status'            =>  htmlspecialchars($this->input->post('status')),
-                'email'             =>  htmlspecialchars($this->input->post('email')),
-                'no_telp'           =>  htmlspecialchars($this->input->post('notelp')),
-                'alamat'            =>  htmlspecialchars($this->input->post('alamat')),
+                'judul_tim'         =>  htmlspecialchars($this->input->post('judultim'), true),
+                'nama_penulis'      =>  htmlspecialchars($this->input->post('namapenulis'), true),
+                'kategori'          =>  htmlspecialchars($this->input->post('subtema'), true),
+                'metode_pelaksanaan'=>  htmlspecialchars($this->input->post('metode_pelaksanaan'), true),
+                'institusi'         =>  htmlspecialchars($this->input->post('institusi'), true),
+                'status'            =>  htmlspecialchars($this->input->post('status'), true),
+                'email'             =>  htmlspecialchars($this->input->post('email'), true),
+                'no_telp'           =>  htmlspecialchars($this->input->post('notelp'), true),
+                'alamat'            =>  htmlspecialchars($this->input->post('alamat'), true),
                 'nama_file'         =>  $makalah
             ];
             

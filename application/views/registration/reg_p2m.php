@@ -18,7 +18,7 @@
         <!--Contact Map-->
         <!--Start Row-->
         <div class="row justify-content-center">
-            <div id="pemakalah" class="pemakalah" data-pemakalah="<?= $this->session->flashdata('msg_pemakalah'); ?>"></div>
+            <div id="pemakalahp2m" class="pemakalahp2m" data-pemakalahp2m="<?= $this->session->flashdata('msg_pemakalah'); ?>"></div>
         </div>
         <?= form_open_multipart('registration/reg_p2m'); ?>
         <!-- <form action="<?= base_url('registration/pemakalah'); ?>" method="post"> -->
@@ -35,51 +35,53 @@
                         <?php echo form_error('namapenulis', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="form-group">
-                        <label style="font-size: 15px; font-weight: 400" for="subTema">Kategori PKM</label>
+                        <label style="font-size: 15px; font-weight: 400" for="subTema">Kategori PkM</label>
                         <select class="form-control" id="subtema" name="subtema">
-                            <option value="" selected disabled>--Pilih--</option>
-                            <option value="RenewableEnergy">Program Kemitraan Masyarakat</option>
-                            <option value="SmartEnergy">Program Kemitraan Masyarakat Stimulus</option>
-                            <option value="CleanEnergy">Program Kuliah Kerja Nyata Pembelajaran dan Pemberdayaan Masyarakat (KKN-PPM)</option>
-                            <option value="Kontrol dan TI">Program Pengembangan Kewirausahaan</option>
-                            <option value="Smart Building">Program Pengembangan Kewirausahaan</option>
-                            <option value="Infrastruktur Energi">Program Pengembangan Produk Unggulan Daerah</option>
-                            <option value="Material Kontruksi">Program Pengembangan Usaha Produk Intelektual Kampus</option>
-                            <option value="Rekayasa Infrastruktur">Rekayasa Infrastruktur</option>
-                            <option value="Pembangkit Mikro">Pembangkit Mikro</option>
-                            <option value="Konversi Energi">Konversi Energi</option>
-                            <option value="Power Plant">Power Plant</option>
-                            <option value="Internet of Things">Internet of Things</option>
-                            <option value="Artificial Inteligent">Artificial Inteligent</option>
-                            <option value="DataScience">Data Science</option>
-                            <option value="Sistem Informasi">Sistem Informasi</option>
-                            <option value="Audit energy">Audit energy</option>
-                            <option value="Manajemen Energi">Manajemen Energi</option>
-                            <option value="Sistem Transformator">Sistem Transformator</option>
-                            <option value="Bahan Teknik Pembangkit Listrik">Bahan Teknik Pembangkit Listrik</option>
-                            <option value="Ilmu Terapan Pemodelan Matematika">Ilmu Terapan Pemodelan Matematika</option>
-                            <option value="Rekayasa Sumber Daya Air">Rekayasa Sumber Daya Air</option>
-                            <option value="Manajemen Pembangkit Listrik">Manajemen Pembangkit Listrik</option>
-                            <option value="Informatic">Informatic</option>
-                            <option value="Data Mining">Data Mining</option>
+                           <option value="" selected disabled>--Pilih--</option>
+                           <option value="Program Kemitraan Masyarakat">Program Kemitraan Masyarakat</option>
+                           <option value="Program Kemitraan Masyarakat Stimulus">Program Kemitraan Masyarakat Stimulus</option>
+                           <option value="Program Kuliah Kerja Nyata Pembelajaran dan Pemberdayaan Masyarakat (KKN-PPM)">Program Kuliah Kerja Nyata Pembelajaran dan Pemberdayaan Masyarakat (KKN-PPM)</option>
+                           <option value="Program Pengembangan Kewirausahaan">Program Pengembangan Kewirausahaan</option>
+                           <option value="Program Pengembangan Produk Unggulan Daerah">Program Pengembangan Produk Unggulan Daerah</option>
+                           <option value="Program Pengembangan Usaha Produk Intelektual Kampus">Program Pengembangan Usaha Produk Intelektual Kampus</option>
+                           <option value="Program Pengembangan Desa Mitra">Program Pengembangan Desa Mitra</option>
+                           <option value="Program Kemitraan Wilayah">Program Kemitraan Wilayah</option>
+                           <option value="Program Pemberdayaan Masyarakat Unggulan Perguruan Tinggi">Program Pemberdayaan Masyarakat Unggulan Perguruan Tinggi</option>
+                           <option value="Program Penerapan IPTEK kepada Masyarakat">Program Penerapan Ipteks kepada Masyarakat</option>
                         </select>
                         <?php echo form_error('subtema', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
-                    <div class="form-group">
+                     <div class="form-group">
+                        <label style="font-size: 15px; font-weight: 400" for="institusi">Metode Pelaksanaan PkM</label>
+                        <select class="form-control" name="metode_pelaksanaan" id="metode_pelaksanaan">
+                           <option value="" selected disabled>--Pilih--</option>
+                           <option value="Pendidikan Masyarakat">Pendidikan Masyarakat</option>
+                           <option value="Konsultasi">Konsultasi</option>
+                           <option value="Difusi Ipteks">Difusi Ipteks</option>
+                           <option value="Pelatihan">Pelatihan</option>
+                           <option value="Mediasi">Mediasi</option>
+                           <option value="Simulasi Ipteks">Simulasi Ipteks</option>
+                           <option value="Substitusi Ipteks">Substitusi Ipteks</option>
+                           <option value="Advokasi">Advokasi</option>
+                           <option value="Metode lain yang sesuai dengan kegiatan">Metode lain yang sesuai dengan kegiatan</option>
+                        </select>
+                        <?php echo form_error('metode_pelaksanaan', '<small class="text-danger pl-3">', '</small>'); ?>
+                     </div>
+                     <div class="form-group">
                         <label style="font-size: 15px; font-weight: 400" for="institusi">Institusi</label>
                         <input type="text" class="form-control" id="institusi" name="institusi" placeholder="Institusi">
                         <?php echo form_error('institusi', '<small class="text-danger pl-3">', '</small>'); ?>
-                    </div>
-                    <div class="form-group">
+                     </div>
+                     <div class="form-group">
                         <label for="Status">Status</label>
                         <select class="form-control" id="status" name="status">
-                            <option value="" selected disabled>--Pilih--</option>
-                            <option value="Mahasiswa">Mahasiswa</option>
-                            <option value="Dosen">Dosen</option>
-                            <option value="Umum">Umum</option>
+                           <option value="" selected disabled>--Pilih--</option>
+                           <option value="Mahasiswa">Mahasiswa</option>
+                           <option value="Dosen">Dosen</option>
+                           <option value="Umum">Umum</option>
                         </select>
                         <?php echo form_error('status', '<small class="text-danger pl-3">', '</small>'); ?>
-                    </div>
+                     </div>
                     <div class="form-group">
                         <label style="font-size: 15px; font-weight: 400" for="Email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="Email">
@@ -96,7 +98,7 @@
                         <?php echo form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="form-group">
-                        <label for="Upload File">Upload Makalah</label>
+                        <label for="Upload File">Unggah Makalah (Maskimal 12 MB)</label>
                         <input type="file" class="form-control form-control-file" id="uploadfile" name="uploadfile">
                         <?php echo form_error('uploadfile', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>

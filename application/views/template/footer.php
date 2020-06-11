@@ -207,23 +207,31 @@
 	<script src="<?= base_url(); ?>assets/js/main.js"></script>
 	<script src="<?= base_url(); ?>assets/scripts/script.js"></script>
 	<script type="text/javascript">
-			const msg_pemakalah = $('#pemakalah').data('pemakalah');
-		
-			if (msg_pemakalah) {
-				Swal.fire({
-					title: 'Pendaftaran Peserta Makalah',
-					text: 'Berhasil ' + msg_pemakalah,
-					type: 'success'
-				});
-			}
-			const msg_semnas = $('#semnas').data('semnas');
-			if(msg_semnas) {
-				Swal.fire({
-					title: 'Pendaftaran Peserta Semnas',
-					text: 'Berhasil ' + msg_semnas,
-					type: 'success'
-				});
-			}
+		const msg_p2m = $('#pemakalahp2m').data('pemakalahp2m');
+		if (msg_p2m) {
+			Swal.fire({
+				title: 'Pendaftaran Pemakalah PkM',
+				text: 'Berhasil ' + msg_p2m,
+				type: 'success'
+			});
+		}
+		const msg_pemakalah = $('#pemakalah').data('pemakalah');
+	
+		if (msg_pemakalah) {
+			Swal.fire({
+				title: 'Pendaftaran Peserta Makalah',
+				text: 'Berhasil ' + msg_pemakalah,
+				type: 'success'
+			});
+		}
+		const msg_semnas = $('#semnas').data('semnas');
+		if(msg_semnas) {
+			Swal.fire({
+				title: 'Pendaftaran Peserta Semnas',
+				text: 'Berhasil ' + msg_semnas,
+				type: 'success'
+			});
+		}
 
 			$('.btnCariData').on('click', function(e) {
 				var namaLengkap = $('#inputNamaLengkap').val();
