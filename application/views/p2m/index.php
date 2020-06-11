@@ -24,16 +24,16 @@
                            <div class="table-responsive">
                               <table id="data-p2m" class="table table-bordered table-striped" width="100%">
                                  <thead>
-                                       <tr class="text-center">
-                                          <th style="vertical-align: middle;">#</th>
-                                          <th style="vertical-align: middle;">Judul Tim</th>
-                                          <th style="vertical-align: middle;">Penulis</th>
-                                          <th style="vertical-align: middle;">Kategori PkM</th>
-                                          <th style="vertical-align: middle;">Metode Pelaksanaan</th>
-                                          <th style="vertical-align: middle;">Institusi</th>
-                                          <th style="vertical-align: middle;">Status Bayar</th>
-                                          <th style="vertical-align: middle;">Actions</th>
-                                       </tr>
+                                    <tr class="text-center">
+                                       <th style="vertical-align: middle;">#</th>
+                                       <th style="vertical-align: middle;">Judul Tim</th>
+                                       <th style="vertical-align: middle;">Penulis</th>
+                                       <th style="vertical-align: middle;">Kategori PkM</th>
+                                       <th style="vertical-align: middle;">Metode Pelaksanaan</th>
+                                       <th style="vertical-align: middle;">Institusi</th>
+                                       <th style="vertical-align: middle;">Status Bayar</th>
+                                       <th style="vertical-align: middle;">Actions</th>
+                                    </tr>
                                  </thead>
                                  <tbody>
                                     <?php $no = 1; ?>
@@ -55,8 +55,8 @@
                                           <?php endif; ?>
                                        <?php endif; ?>
                                        <td class="text-center">
-                                          <button type="button" title="Detail Pemakalah PkM" data-id="<?= $row['id_pemakalah_p2m'] ?>" class="btn btn-primary btnDetailPkM"><i class="fas fa-book"></i></button>
-                                          <a href="<?= base_url('admin/deletePemakalahP2M/') . $row['id_pemakalah_p2m']; ?>" title="Delete Pemakalah PkM" class="btn btn-danger btnDeletePkM"><i class="fas fa-trash-alt"></i></a>
+                                          <button type="button" title="Detail Pemakalah PkM" data-id="<?= $row['id_pemakalah_p2m'] ?>" class="btn btn-primary btnDetailPkM mt-1"><i class="fas fa-book"></i></button>
+                                          <a href="<?= base_url('admin/deletePemakalahP2M/') . $row['id_pemakalah_p2m']; ?>" title="Delete Pemakalah PkM" class="btn mt-1 btn-danger btnDeletePkM"><i class="fas fa-trash-alt"></i></a>
                                        </td>
                                     </tr>
                                     <?php $no++; ?>
