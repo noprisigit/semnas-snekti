@@ -161,6 +161,63 @@ class Registration extends CI_Controller {
         echo json_encode($res);
     }
 
+    public function reg_p2m() {
+        $this->form_validation->set_rules('judultim','judul tim', 'trim|required');
+        $this->form_validation->set_rules('namapenulis','nama penulis', 'trim|required');
+        $this->form_validation->set_rules('subtema','sub tema', 'trim|required');
+        $this->form_validation->set_rules('institusi','institusi', 'trim|required');
+        $this->form_validation->set_rules('status','status', 'trim|required');
+        $this->form_validation->set_rules('email','email', 'trim|required');
+        $this->form_validation->set_rules('notelp','no telphone', 'trim|required');
+        $this->form_validation->set_rules('alamat','alamat', 'trim|required');
+        if(empty($_FILES['uploadfile']['name'])) {
+            $this->form_validation->set_rules('uploadfile', 'document', 'required');
+        }
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = "Registrasi Pemakalah P2M";
+    
+            $this->load->view('template/header', $data);
+            $this->load->view('registration/reg_p2m');
+            $this->load->view('template/footer');
+        } else {
+            $upload_makalah = $_FILES['uploadfile']['name'];
+            
+            if($upload_makalah) {
+                $config['allowed_types'] = 'pdf|doc|docx';
+                $config['max_size'] = '5000';
+                $config['file_name'] = $upload_makalah;
+                $config['upload_path'] = './file/p2m';
+    
+                $this->load->library('upload', $config);
+    
+                if($this->upload->do_upload('uploadfile')) {
+                    $makalah = $this->upload->data('file_name');
+                    //print_r($makalah);
+                    //exit;
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+            
+            $data = [
+                'judul_tim'         =>  htmlspecialchars($this->input->post('judultim')),
+                'nama_penulis'      =>  htmlspecialchars($this->input->post('namapenulis')),
+                'sub_tema'          =>  htmlspecialchars($this->input->post('subtema')),
+                'institusi'         =>  htmlspecialchars($this->input->post('institusi')),
+                'status'            =>  htmlspecialchars($this->input->post('status')),
+                'email'             =>  htmlspecialchars($this->input->post('email')),
+                'no_telp'           =>  htmlspecialchars($this->input->post('notelp')),
+                'alamat'            =>  htmlspecialchars($this->input->post('alamat')),
+                'nama_file'         =>  $makalah
+            ];
+            
+            $this->db->insert('pemakalah_p2m', $data);
+            $this->session->set_flashdata('msg_pemakalah', 'Dilakukan');
+            redirect('registration/reg_p2m');
+        }
+    }
+
     public function searchParticipant()
     {
         if ($this->input->post('query') != "") {

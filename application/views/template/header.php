@@ -94,6 +94,7 @@
 									<a class="dropdown-item" href="https://drive.google.com/file/d/1h6E8t2R4_euo_XWkX3x39BX2W9Q4qGvM/view" target="_blank">Template Artikel</a>
 									<a class="dropdown-item" href="<?= base_url('registration'); ?>">Non Pemakalah</a>
 									<a class="dropdown-item" href="<?= base_url('registration/pemakalah') ?>">Pemakalah</a>
+									<a class="dropdown-item" href="<?= base_url('registration/reg_p2m') ?>">Pemakalah P2M</a>
 									<a class="dropdown-item" href="<?= base_url('registration/upload-bukti-bayar') ?>">Upload Bukti Bayar</a>
 								</div>
 							<li class="nav-item <?= ($title == 'komite') ? 'active' : ''; ?>">

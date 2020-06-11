@@ -33,7 +33,7 @@
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-md-10 col-lg-8 text-center">
-						<img class="img-fluid" src="assets/images/404.png" alt="">
+						<img class="img-fluid" src="<?= base_url() ?>assets/images/404.png" alt="">
 						<h1>404</h1>
 						<h2>Oops... Page Not Found!</h2>
 						<!-- <p>Try using the button below to go to main page of the site </p>
