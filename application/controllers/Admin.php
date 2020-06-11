@@ -275,6 +275,16 @@ class Admin extends CI_Controller {
         echo json_encode($p2m);
     }
 
+    public function deletePemakalahP2M($id) {
+        $p2m = $this->db->select('nama_file, bukti_bayar')->get_where('pemakalah_p2m', ['id_pemakalah_p2m' => $id])->row_array();
+        unlink(FCPATH . "/file/p2m/" . $p2m['nama_file']);
+        unlink(FCPATH . "/file/p2m/bukti/" . $p2m['bukti_bayar']);
+        $this->db->delete('pemakalah_p2m', ['id_pemakalah_p2m' => $id]);
+
+        $this->session->set_flashdata('message', 'Data berhasil dihapus');
+        redirect('admin/p2m/peserta');
+    }
+
     public function callforpaper($request) {
         switch ($request) {
             case 'peserta':

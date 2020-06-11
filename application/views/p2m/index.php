@@ -11,7 +11,7 @@
         <!-- /.container-fluid -->
     </section>
     <div class="row justify-content-center">
-        <div class="flash-message" data-title="Data Pemakalah" data-message="<?= $this->session->flashdata('message'); ?>"></div>
+        <div class="flash-message" data-title="Data Pemakalah PkM" data-message="<?= $this->session->flashdata('message'); ?>"></div>
     </div>
 
     <!-- Main content -->
@@ -56,6 +56,7 @@
                                        <?php endif; ?>
                                        <td class="text-center">
                                           <button type="button" title="Detail Pemakalah PkM" data-id="<?= $row['id_pemakalah_p2m'] ?>" class="btn btn-primary btnDetailPkM"><i class="fas fa-book"></i></button>
+                                          <a href="<?= base_url('admin/deletePemakalahP2M/') . $row['id_pemakalah_p2m']; ?>" title="Delete Pemakalah PkM" class="btn btn-danger btnDeletePkM"><i class="fas fa-trash-alt"></i></a>
                                        </td>
                                     </tr>
                                     <?php $no++; ?>
