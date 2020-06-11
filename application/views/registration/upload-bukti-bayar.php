@@ -19,10 +19,11 @@
                <div class="form-group">
                   <label style="font-size: 15px; font-weight: 400" for="NamaLengkap">Nama Lengkap</label>
                   <input type="text" class="form-control" name="inputNamaLengkap" id="inputNamaLengkap" placeholder="Nama Lengkap">
+                  <div id="listParticipants"></div>
                </div>
                <div class="form-group">
                   <label style="font-size: 15px; font-weight: 400" for="AsalInstansi">Asal Instansi</label>
-                  <input type="text" class="form-control" id="inputAsalInstansi" name="inputAsalInstansi" placeholder="Asal Instansi">
+                  <input type="text" class="form-control" id="inputAsalInstansi" name="inputAsalInstansi" placeholder="Asal Instansi" readonly>
                </div>
                <div class="contact-frm-btn">
                   <button type="button" id="btn-registration" class="btnCariData mr_btn_fill">Cari Data</button>

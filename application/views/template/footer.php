@@ -205,6 +205,7 @@
 	<script src="<?= base_url(); ?>assets/js/map.js"></script>
 	<!--Main-->
 	<script src="<?= base_url(); ?>assets/js/main.js"></script>
+	<script src="<?= base_url(); ?>assets/scripts/script.js"></script>
 	<script type="text/javascript">
 			const msg_pemakalah = $('#pemakalah').data('pemakalah');
 		
@@ -360,6 +361,50 @@
 								type: 'success'
 							});
 						}
+					}
+				});
+				return false;
+			});
+
+			$('#inputNamaLengkap').keyup(function() {
+				var query = $(this).val();
+				if (query != "") {
+					$.ajax({
+						url: "<?= base_url('registration/searchParticipant') ?>",
+						type: "post",
+						data: { query: query },
+						beforeSend: function() {
+							$('#listParticipants').html('<p class="p-2" style="background-color: #eee">Loading...</p>');
+						},
+						success: function(data) {
+							$('#listParticipants').fadeIn();
+							$('#listParticipants').html(data);
+						}
+					});
+					return false;
+				}
+				$('#listParticipants').fadeOut();
+			});
+
+			$(document).on('click', '.listOfParticipant', function() {
+				var namaLengkap = $(this).text();
+				$('#inputNamaLengkap').val($(this).text());
+				$('#listParticipants').fadeOut();
+
+				$.ajax({
+					url: "<?= base_url('registration/searchInstitusi') ?>",
+					type: "post",
+					data: { namaLengkap: namaLengkap },
+					dataType: "json",
+					beforeSend: function() {
+						$('#inputAsalInstansi').val("Loading...");
+					},
+					success: function(data) {
+						console.log(data);
+						$('#inputAsalInstansi').val(data.asal_instansi);
+					},
+					error: function(err) {
+						console.log(err)
 					}
 				});
 				return false;

@@ -160,4 +160,29 @@ class Registration extends CI_Controller {
 
         echo json_encode($res);
     }
+
+    public function searchParticipant()
+    {
+        if ($this->input->post('query') != "") {
+            $nama = $this->input->post('query');
+            $output = '';
+            $query = $this->db->query('SELECT nama_lengkap FROM registrasi WHERE nama_lengkap LIKE "%'.$nama.'%"');
+            $participants = $query->result_array();
+            $output = '<ul class="pl-2 list-unstyled" style="background-color: #eee; cursor: pointer">';
+            if (count($participants) > 0) {
+                foreach($participants as $row) {
+                $output .= '<li class="p-2 listOfParticipant">'.$row['nama_lengkap'].'</li>';
+                }
+            } else {
+                $output .= '<li class="p-2">Data tidak ditemukan</li>';
+            }
+            $output .= '</ul>';
+            echo $output;
+        }
+    }
+
+    public function searchInstitusi() {
+        $participant = $this->db->select('asal_instansi')->get_where('registrasi', ['nama_lengkap' => $this->input->post('namaLengkap')])->row_array();
+        echo json_encode($participant);
+    }
 }
