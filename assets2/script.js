@@ -267,4 +267,4 @@ $(document).on('click', '.btnDetailPkM', function() {
         }
     });
     return false;
-})
+});
