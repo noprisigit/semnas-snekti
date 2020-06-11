@@ -65,4 +65,9 @@ class Page extends CI_Controller {
         $this->load->view('page/komite');
         $this->load->view('template/footer');
     }
+
+    public function blocked()
+    {
+        $this->load->view('page/404');
+    }
 }

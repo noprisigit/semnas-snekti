@@ -40,7 +40,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin_template/footer');
     }
 
-    public function semnas($request) {
+    public function semnas($request = "peserta") {
         switch($request) {
             case 'peserta' :
                 $url_css = ['assets2/plugins/datatables-bs4/css/dataTables.bootstrap4.css'];
@@ -83,6 +83,27 @@ class Admin extends CI_Controller {
         
                 $this->load->view('admin_template/header', $data);
                 $this->load->view('semnas/pembayaran', $content);
+                $this->load->view('admin_template/footer');
+                break;
+            default:
+                $url_css = ['assets2/plugins/datatables-bs4/css/dataTables.bootstrap4.css'];
+                $url_js = [
+                    'assets2/plugins/datatables/jquery.dataTables.js',
+                    'assets2/plugins/datatables-bs4/js/dataTables.bootstrap4.js'
+                ];
+        
+                $data['title'] = "Seminar Nasional";
+                $data['c_title'] = "Data Peserta Seminar Nasional";
+                $data['file_css'] = $url_css;
+                $data['file_js'] = $url_js;
+        
+                $content['c_title'] = "Data Peserta Seminar Nasional";
+        
+                $this->load->model('SemnasModel');
+                $content['data_semnas'] = $this->SemnasModel->getAllData();
+        
+                $this->load->view('admin_template/header', $data);
+                $this->load->view('semnas/index', $content);
                 $this->load->view('admin_template/footer');
                 break;
         }
