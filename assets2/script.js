@@ -256,16 +256,11 @@ $(document).on('click', '.btnDetailPkM', function() {
             $('#detEmail').html(": " + data.email);
             $('#detPhone').html(": " + data.no_telp);
             $('#detAlamat').html(": " + data.alamat);
-            var statusBayar;
             if (data.bukti_bayar === "") {
                 $('#detStatusBayar').html(': <span class="badge badge-danger">Belum Ada Bukti Bayar</span>');
             } else {
                 $('#detStatusBayar').html(": " + '<button class="btn btn-info btn-sm">Lihat Bukti Bayar</button> <button class="btn btn-warning btn-sm">Verifikasi Pembayaran</button>');
             } 
-                statusBayar = '<span class="badge badge-danger">Belum Ada Bukti Bayar</span>';
-                statusBayar = '<button class="btn btn-info btn-sm">Lihat Bukti Bayar</button>';
-            
-            
         },
         error: function(err) {
             console.log(err.responseText);

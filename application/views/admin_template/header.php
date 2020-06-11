@@ -112,7 +112,7 @@
                         </li>
                         <li class="nav-item has-treeview <?= $title == 'Call For Paper' ? 'menu-open' : '' ?>">
                             <a href="#" class="nav-link <?= $title == 'Call For Paper' ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-paper-plane"></i>
+                                <i class="nav-icon fas fa-clipboard"></i>
                                 <p>
                                     Call For Paper
                                     <i class="fas fa-angle-left right"></i>
@@ -137,7 +137,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?= base_url('admin/p2m/peserta'); ?>" class="nav-link <?= $c_title == 'Data Tim Call For Paper' ? 'active' : '' ?>">
+                                    <a href="<?= base_url('admin/p2m/peserta'); ?>" class="nav-link <?= $c_title == 'Data Pemakalah PkM' ? 'active' : '' ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Data Peserta</p>
                                     </a>
