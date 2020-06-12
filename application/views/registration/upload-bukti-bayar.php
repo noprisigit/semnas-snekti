@@ -14,7 +14,20 @@
          <div id="semnas" data-semnas="<?= $this->session->flashdata('msg_semnas'); ?>"></div>
       </div>
       <div class="row justify-content-center">
-         <div class="col-md-5">
+         <div class="col-md-8">
+            <div class="form-group">
+               <label for="">Pilih Bidang</label>
+               <select id="selectBidang" class="form-control">
+                  <option value="" selected disabled>- Pilih bidang yang diikuti -</option>
+                  <option value="Semnas">Seminar Nasional</option>
+                  <option value="Pemakalah">Pemakalah</option>
+                  <option value="Pemakalah P2M">Pemakalah P2M</option>
+               </select>
+            </div>
+         </div>
+      </div>
+      <div class="row justify-content-center" id="rowUploadBuktiBayarSemnas" style="display: none">
+         <div class="col-md-8">
             <form id="frmCariDataPesertaSemnas" method="post">
                <div class="form-group">
                   <label style="font-size: 15px; font-weight: 400" for="NamaLengkap">Nama Lengkap</label>
@@ -31,11 +44,29 @@
             </form>
          </div>
       </div>   
+      <div class="row justify-content-center" id="rowUploadBuktiBayarPemakalah" style="display: none">
+         <div class="col-md-8">
+            <form id="frmCariDataPemakalah" method="post">
+               <div class="form-group">
+                  <label for="">Judul Makalah</label>
+                  <textarea name="inputJudulMakalah" id="inputJudulMakalah" class="form-control" cols="60" rows="3"></textarea>
+                  <!-- <input type="text" class="form-control" name="inputJudulMakalah" id="inputJudulMakalah" placeholder="Judul Makalah"> -->
+                  <div id="listJudulMakalah"></div>
+               </div>
+               <div class="contact-frm-btn">
+                  <button type="button" style="width: 60%; margin: 10px 20% 0 20%"  class="btnCariDataPemakalah mr_btn_fill">Cari Data</button>
+               </div>
+            </form>
+         </div>
+      </div>
       <div id="loader" style="display: none;">
          <img src="<?= base_url('assets/images/waiting.gif') ?>" class="d-flex mx-auto" width="200">
       </div>
       <div id="data-peserta-not-found" class="row mt-3 justify-content-center" style="display: none;">
          <h3 class="text-center">Data Tidak Ditemukan <br /> Harap periksa kembali nama dan asal instansi yang dimasukkan</h3>
+      </div>
+      <div id="data-pemakalah-not-found" class="row mt-3 justify-content-center" style="display: none;">
+         <h3 class="text-center">Data Tidak Ditemukan <br /> Harap periksa kembali judul makalah yang dimasukkan</h3>
       </div>
       <div id="data-peserta" class="row mt-3" style="display: none">
          <div class="col-md-6">
@@ -81,6 +112,64 @@
                   <input type="file" name="inputBuktiBayar" id="inputBuktiBayar" class="form-control" accept="image/png, image/jpeg, image/jpg">
                </div>
                <button type="submit" class="btn btn-primary" id="btnUploadBuktiBayar">Upload Bukti</button>
+               <div id="submitLoader" style="display: none;">
+                  <img src="<?= base_url('assets/images/waiting.gif') ?>" class="" width="120">
+               </div>
+            </form>
+         </div>
+      </div>
+      <div id="data-pemakalah" class="row mt-3" style="display: none;">
+         <div class="col-md-8">
+            <div id="data-peserta-pemakalah">
+               <h3 class="mb-2">Data Peserta Pemakalah</h3>
+               <table class="table" width="100%">
+                  <tr>
+                     <td width="30%">Judul Makalah</td>
+                     <td id="tbJudulMakalah">: Loading...</td>
+                  </tr>
+                  <tr>
+                     <td>Penulis</td>
+                     <td id="tbPenulisMakalah">: Loading...</td>
+                  </tr>
+                  <tr>
+                     <td>Sub Tema</td>
+                     <td id="tbSubTemaMakalah">: Loading...</td>
+                  </tr>
+                  <tr>
+                     <td>Institusi</td>
+                     <td id="tbInstitusiMakalah">: Loading...</td>
+                  </tr>
+                  <tr>
+                     <td>Status</td>
+                     <td id="tbStatusMakalah">: Loading...</td>
+                  </tr>
+                  <tr>
+                     <td>Email</td>
+                     <td id="tbEmailMakalah">: Loading...</td>
+                  </tr>
+                  <tr>
+                     <td>No. Telp/HP</td>
+                     <td id="tbTelpMakalah">: Loading...</td>
+                  </tr>
+                  <tr>
+                     <td>Alamat</td>
+                     <td id="tbAlamatMakalah">: Loading...</td>
+                  </tr>
+                  <tr>
+                     <td>Status Pembayaran</td>
+                     <td id="tbStatusPembayaranMakalah">: Loading...</td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+         <div id="panelUploadBuktiBayarMakalah" class="col-md-4" style="display: none;">
+            <h3 class="mb-2">Upload Bukti Bayar</h3>
+            <form id="frmUploadBuktiBayarMakalah" method="post">
+               <input type="hidden" name="inputKodeMakalah" id="inputKodeMakalah">
+               <div class="form-group">
+                  <input type="file" name="inputBuktiBayarMakalah" id="inputBuktiBayarMakalah" class="form-control" accept="image/png, image/jpeg, image/jpg">
+               </div>
+               <button type="submit" class="btn btn-primary" id="btnUploadBuktiBayarMakalah">Unggah Bukti</button>
                <div id="submitLoader" style="display: none;">
                   <img src="<?= base_url('assets/images/waiting.gif') ?>" class="" width="120">
                </div>
