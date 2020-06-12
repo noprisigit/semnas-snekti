@@ -309,7 +309,56 @@ class Registration extends CI_Controller {
             $this->db->update('pemakalah');
         } else {
             $res['status'] = false;
-            $res['msg'] = $this->upload->display_errors();
+            $res['msg'] = "Bukti bayar gagal diunggah";
+        }
+
+        echo json_encode($res);
+    }
+
+    public function searchJudulMakalahPkM() {
+        if ($this->input->post('query') != "") {
+            $judul = $this->input->post('query');
+            $output = '';
+            $query = $this->db->query('SELECT judul_tim FROM pemakalah_p2m WHERE judul_tim LIKE "%'.$judul.'%"');
+            $makalah = $query->result_array();
+            $output = '<ul class="pl-2 list-unstyled" style="background-color: #eee; cursor: pointer">';
+            if (count($makalah) > 0) {
+                foreach($makalah as $row) {
+                $output .= '<li class="p-2 listOfJudulMakalahPkM">'.$row['judul_tim'].'</li>';
+                }
+            } else {
+                $output .= '<li class="p-2">Data tidak ditemukan</li>';
+            }
+            $output .= '</ul>';
+            echo $output;
+        }
+    }
+
+    public function cariDataPemakalahPkM() {
+        $makalah = $this->db->get_where('pemakalah_p2m', ['judul_tim' => $this->input->post('judul')])->row_array();
+        echo json_encode($makalah);
+    }
+
+    public function prosesBuktiBayarPemakalahP2M() {
+        $buktiBayar = $_FILES['inputBuktiBayarMakalahP2M']['name'];
+
+        $config['upload_path']="./file/p2m/bukti"; //path folder file upload
+        $config['allowed_types']='png|jpg|jpeg'; //type file yang boleh di upload
+        $config['encrypt_name'] = TRUE; //enkripsi file name upload
+        $config['max_size'] = 5048;
+
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('inputBuktiBayarMakalahP2M')) {
+            $data = $this->upload->data();
+
+            $res['status'] = true;
+            $this->db->set('bukti_bayar', $data['file_name']);
+            // $this->db->set('status_pembayaran', 1);
+            $this->db->where('id_pemakalah_p2m', $this->input->post('inputKodeMakalahP2M'));
+            $this->db->update('pemakalah_p2m');
+        } else {
+            $res['status'] = false;
+            $res['msg'] = "Bukti bayar gagal diunggah";
         }
 
         echo json_encode($res);

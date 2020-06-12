@@ -291,6 +291,15 @@ class Admin extends CI_Controller {
         force_download('file/p2m/'.$file, NULL);
     }
 
+    public function verifikasiPembayaranMakalahP2M($id) {
+        $this->db->set('status_bayar', 1);
+        $this->db->where('id_pemakalah_p2m', $id);
+        $this->db->update('pemakalah_p2m');
+
+        $this->session->set_flashdata('message', 'Pembayaran telah diverifikasi');
+        redirect('admin/p2m/peserta');
+    }
+
     public function callforpaper($request = "peserta") {
         switch ($request) {
             case 'peserta':

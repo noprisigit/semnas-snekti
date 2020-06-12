@@ -59,6 +59,20 @@
             </form>
          </div>
       </div>
+      <div class="row justify-content-center" id="rowUploadBuktiBayarPemakalahP2M" style="display: none">
+         <div class="col-md-8">
+            <form id="frmCariDataPemakalahP2M" method="post">
+               <div class="form-group">
+                  <label for="">Judul Makalah PkM</label>
+                  <textarea name="inputJudulMakalahPkM" class="form-control" id="inputJudulMakalahPkM" cols="30" rows="3"></textarea>
+                  <div id="listJudulMakalahPkM"></div>
+               </div>
+               <div class="contact-frm-btn">
+                  <button type="button" style="width: 60%; margin: 10px 20% 0 20%"  class="btnCariDataPemakalahPkM mr_btn_fill">Cari Data</button>
+               </div>
+            </form>
+         </div>
+      </div>
       <div id="loader" style="display: none;">
          <img src="<?= base_url('assets/images/waiting.gif') ?>" class="d-flex mx-auto" width="200">
       </div>
@@ -170,6 +184,69 @@
                   <input type="file" name="inputBuktiBayarMakalah" id="inputBuktiBayarMakalah" class="form-control" accept="image/png, image/jpeg, image/jpg">
                </div>
                <button type="submit" class="btn btn-primary" id="btnUploadBuktiBayarMakalah">Unggah Bukti</button>
+               <div id="submitLoader" style="display: none;">
+                  <img src="<?= base_url('assets/images/waiting.gif') ?>" class="" width="120">
+               </div>
+            </form>
+         </div>
+      </div>
+
+      <div id="data-pemakalah-p2m" class="row mt-3" style="display: none;">
+         <div class="col-md-8">
+            <div id="data-peserta-pemakalah">
+               <h3 class="mb-2">Data Pemakalah PkM</h3>
+               <table class="table" width="100%">
+                  <tr>
+                     <td width="30%">Judul Makalah</td>
+                     <td id="tbJudulMakalahPkM">: Loading...</td>
+                  </tr>
+                  <tr>
+                     <td>Penulis</td>
+                     <td id="tbPenulisMakalahPkM">: Loading...</td>
+                  </tr>
+                  <tr>
+                     <td>Kategori</td>
+                     <td id="tbKategoriMakalahPkM">: Loading...</td>
+                  </tr>
+                  <tr>
+                     <td>Metode Pelaksanaan</td>
+                     <td id="tbMetodeMakalahPkM">: Loading...</td>
+                  </tr>
+                  <tr>
+                     <td>Institusi</td>
+                     <td id="tbInstitusiMakalahPkM">: Loading...</td>
+                  </tr>
+                  <tr>
+                     <td>Status</td>
+                     <td id="tbStatusMakalahPkM">: Loading...</td>
+                  </tr>
+                  <tr>
+                     <td>Email</td>
+                     <td id="tbEmailMakalahPkM">: Loading...</td>
+                  </tr>
+                  <tr>
+                     <td>No. Telp/HP</td>
+                     <td id="tbTelpMakalahPkM">: Loading...</td>
+                  </tr>
+                  <tr>
+                     <td>Alamat</td>
+                     <td id="tbAlamatMakalahPkM">: Loading...</td>
+                  </tr>
+                  <tr>
+                     <td>Status Pembayaran</td>
+                     <td id="tbStatusPembayaranMakalahPkM">: Loading...</td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+         <div id="panelUploadBuktiBayarMakalahP2M" class="col-md-4" style="display: none;">
+            <h3 class="mb-2">Upload Bukti Bayar</h3>
+            <form id="frmUploadBuktiBayarMakalahP2M" method="post">
+               <input type="hidden" name="inputKodeMakalahP2M" id="inputKodeMakalahP2M">
+               <div class="form-group">
+                  <input type="file" name="inputBuktiBayarMakalahP2M" id="inputBuktiBayarMakalahP2M" class="form-control" accept="image/png, image/jpeg, image/jpg">
+               </div>
+               <button type="submit" class="btn btn-primary" id="btnUploadBuktiBayarMakalahP2M">Unggah Bukti</button>
                <div id="submitLoader" style="display: none;">
                   <img src="<?= base_url('assets/images/waiting.gif') ?>" class="" width="120">
                </div>

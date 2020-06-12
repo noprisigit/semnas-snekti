@@ -150,3 +150,25 @@
    <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+<div class="modal fade" id="modalBuktiBayarPemakalah">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-info">
+				<h4 class="modal-title">Bukti Bayar</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body">
+				<div class="card mb-0">
+					<div class="card-body">
+						<img id="imgBuktiBayarPemakalah" src="" class="img-fluid d-flex mx-auto" alt="bukti bayar">
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer justify-content-end">
+				<button type="button" class="btn btn-info" data-dismiss="modal">Tutup</button>
+			</div>
+		</div>
+	</div>
+</div>

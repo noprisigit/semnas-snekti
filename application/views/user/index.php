@@ -40,6 +40,7 @@
                                         <th class="text-center">Username</th>
                                         <th class="text-center">Level</th>
                                         <th class="text-center">Status</th>
+                                        <th class="text-center">Last Login</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
@@ -69,6 +70,7 @@
                                                         <span class="badge badge-danger">Tidak Aktif</span>
                                                     <?php endif; ?>
                                                 </td>
+                                                <td class="text-center"><?= $row['last_login'] ?></td>
                                                 <td class="text-center">
                                                     <div class="btn-group btn-group-md">
                                                         <?php if($row['is_active'] == 1) : ?>
@@ -96,6 +98,7 @@
                                         <th class="text-center">Username</th>
                                         <th class="text-center">Level</th>
                                         <th class="text-center">Status</th>
+                                        <th class="text-center">Last Login</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </tfoot>

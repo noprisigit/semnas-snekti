@@ -34,9 +34,7 @@ $(document).ready(function() {
         } else {
             status = "Belum Bayar";
         }   
-    
-        
-    
+            
         $('.modal-body .view_kode').attr('value', kode);
         $('.modal-body .view_nmlengkap').attr('value', nmlengkap);
         $('.modal-body .view_nmrinduk').attr('value', nmrinduk);
@@ -256,37 +254,6 @@ $(document).ready(function() {
                 document.location.href = href;
             }
         })
-    });
-    
-    $(document).on('click', '.btnDetailPkM', function() {
-        var id = $(this).data('id');
-        $('#modalDetailPkM').modal('show');
-        $.ajax({
-            url: "../getPemakalahPkM",
-            type: "post",
-            data: { id: id },
-            dataType: "json",
-            success: function(data) {
-                $('#detJudul').html(": " + data.judul_tim);
-                $('#detPenulis').html(": " + data.nama_penulis);
-                $('#detKategori').html(": " + data.kategori);
-                $('#detMetodePelaksanaan').html(": " + data.metode_pelaksanaan);
-                $('#detStatus').html(": " + data.status);
-                $('#detInstitusi').html(": " + data.institusi);
-                $('#detEmail').html(": " + data.email);
-                $('#detPhone').html(": " + data.no_telp);
-                $('#detAlamat').html(": " + data.alamat);
-                if (data.bukti_bayar === "") {
-                    $('#detStatusBayar').html(': <span class="badge badge-danger">Belum Ada Bukti Bayar</span>');
-                } else {
-                    $('#detStatusBayar').html(": " + '<button class="btn btn-info btn-sm">Lihat Bukti Bayar</button> <button class="btn btn-warning btn-sm">Verifikasi Pembayaran</button>');
-                } 
-            },
-            error: function(err) {
-                console.log(err.responseText);
-            }
-        });
-        return false;
     });
     
     $(document).on('click', '.btnDeletePkM', function(e) {

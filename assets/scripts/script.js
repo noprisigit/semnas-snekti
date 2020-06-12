@@ -1,14 +1,4 @@
 $(document).ready(function() {
-   $('#selectBidang').on('change', function() {
-      var value = $(this).val();
-      if (value === "Semnas") {
-         $('#rowUploadBuktiBayarPemakalah').fadeOut();
-         $('#rowUploadBuktiBayarSemnas').fadeIn();
-      } else if(value === "Pemakalah") {
-         $('#rowUploadBuktiBayarSemnas').fadeOut();
-         $('#rowUploadBuktiBayarPemakalah').fadeIn();
-      }
-   });
 
    $('#inputJudulMakalah').keyup(function() {
       var query = $(this).val();
@@ -59,7 +49,7 @@ $(document).ready(function() {
             $('#loader').show(); 
          },
          success: function(res) {
-            console.log(res)
+            // console.log(res)
             if (res === null) {
                $('#data-pemakalah-not-found').show();
                return false;
