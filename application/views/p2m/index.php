@@ -57,6 +57,7 @@
                                        <td class="text-center">
                                           <button type="button" title="Detail Pemakalah PkM" data-id="<?= $row['id_pemakalah_p2m'] ?>" class="btn btn-primary btnDetailPkM mt-1"><i class="fas fa-book"></i></button>
                                           <a href="<?= base_url('admin/deletePemakalahP2M/') . $row['id_pemakalah_p2m']; ?>" title="Delete Pemakalah PkM" class="btn mt-1 btn-danger btnDeletePkM"><i class="fas fa-trash-alt"></i></a>
+                                          <a href="<?= base_url('admin/downloadp2m/?file='). $row['nama_file'] ?>" class="btn btn-info mt-1"><i class="fas fa-download"></i></a>
                                        </td>
                                     </tr>
                                     <?php $no++; ?>

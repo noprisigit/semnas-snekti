@@ -285,6 +285,12 @@ class Admin extends CI_Controller {
         redirect('admin/p2m/peserta');
     }
 
+    public function downloadp2m() {
+        $file = $this->input->get('file');
+        $this->load->helper('download');
+        force_download('file/p2m/'.$file, NULL);
+    }
+
     public function callforpaper($request) {
         switch ($request) {
             case 'peserta':
