@@ -171,6 +171,7 @@ $(document).ready(function() {
     });
     
     $('.btn-detail-paper').on('click', function(){
+        var id = $(this).data('id');
         var judul = $(this).data('judul');
         var penulis = $(this).data('penulis');
         var tema = $(this).data('tema');
@@ -179,6 +180,8 @@ $(document).ready(function() {
         var email = $(this).data('email');
         var telp = $(this).data('telp');
         var alamat = $(this).data('alamat');
+        var status_bayar = $(this).data('status_bayar');
+        var bukti_bayar = $(this).data('bukti_bayar');
         
         $('#detailJudul').html(': ' + judul);
         $('#detailPenulis').html(': ' + penulis);
@@ -188,6 +191,21 @@ $(document).ready(function() {
         $('#detailEmail').html(': ' + email);
         $('#detailTelp').html(': ' + telp);
         $('#detailAlamat').html(': ' + alamat);
+
+        if (bukti_bayar === null || bukti_bayar === "") {
+            $('#detailStatusBayar').html(': <span class="badge badge-danger">Belum Ada Bukti Bayar</span>');
+        } else {
+            if (status_bayar === 0 || status_bayar === "0") {
+                $('#detailStatusBayar').html(": " + '<button class="btn btn-info btn-sm showBuktiBayarPemakalah" data-img="'+bukti_bayar+'">Lihat Bukti Bayar</button> <a href="../verifikasiPembayaranMakalah/'+id+'" class="btn btn-warning btn-sm">Verifikasi Pembayaran</a>');
+            } else {
+                $('#detailStatusBayar').html(": " + '<button class="btn btn-info btn-sm showBuktiBayarPemakalah" data-img="'+bukti_bayar+'">Lihat Bukti Bayar</button>');
+            }
+        }
+    });
+
+    $(document).on('click', '.showBuktiBayarPemakalah', function() {
+        $('#modalBuktiBayarPemakalah').modal('show');
+        $('#imgBuktiBayarPemakalah').attr('src', '../../file/bukti_bayar_pemakalah/' + $(this).data('img'));
     });
     
     $('.btn-delete-pemakalah').on('click', function(event) {

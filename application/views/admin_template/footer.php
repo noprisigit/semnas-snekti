@@ -34,7 +34,14 @@
         $(document).ready(function() {
             $('#data-table-semnas').DataTable();
             $('#data-pembayaran-semnas').DataTable();
-            $('#data-paper').DataTable();
+            $('#data-paper').DataTable({
+                "columnDefs": [
+                    {
+                        "targets": [6],
+                        "width": "130px"
+                    }
+                ]
+            });
             $('#data-p2m').DataTable({
                 "columnDefs": [
                     {

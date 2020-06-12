@@ -291,7 +291,7 @@ class Admin extends CI_Controller {
         force_download('file/p2m/'.$file, NULL);
     }
 
-    public function callforpaper($request) {
+    public function callforpaper($request = "peserta") {
         switch ($request) {
             case 'peserta':
 
@@ -326,6 +326,15 @@ class Admin extends CI_Controller {
         $file = $this->input->get('file');
         $this->load->helper('download');
         force_download('file/'.$file, NULL);
+    }
+
+    public function verifikasiPembayaranMakalah($id) {
+        $this->db->set('status_bayar', 1);
+        $this->db->where('id_pemakalah', $id);
+        $this->db->update('pemakalah');
+
+        $this->session->set_flashdata('message', 'Pembayaran telah diverifikasi');
+        redirect('admin/callforpaper/peserta');
     }
 
     public function materi() {
