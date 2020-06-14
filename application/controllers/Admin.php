@@ -34,6 +34,20 @@ class Admin extends CI_Controller {
 
         // call for paper
         $content['jumlah_tim'] = $this->db->count_all_results('pemakalah');
+        $query1 = $this->db->query('SELECT COUNT(bukti_bayar) AS jumlah FROM pemakalah WHERE bukti_bayar = null or bukti_bayar = ""');
+        $query2 = $this->db->query('SELECT COUNT(bukti_bayar) AS jumlah FROM pemakalah WHERE bukti_bayar != null or bukti_bayar != "" AND status_bayar = 0');
+        $query3 = $this->db->query('SELECT COUNT(bukti_bayar) AS jumlah FROM pemakalah WHERE bukti_bayar != null or bukti_bayar != "" AND status_bayar = 1');
+        $content['jumlah_belum_upload'] = $query1->row_array();
+        $content['jumlah_menunggu_konfirmasi'] = $query2->row_array();
+        $content['jumlah_sukses'] = $query3->row_array();
+        
+        $content['jumlah_tim_pkm'] = $this->db->count_all_results('pemakalah_p2m');
+        $query1 = $this->db->query('SELECT COUNT(bukti_bayar) AS jumlah FROM pemakalah_p2m WHERE bukti_bayar = null or bukti_bayar = ""');
+        $query2 = $this->db->query('SELECT COUNT(bukti_bayar) AS jumlah FROM pemakalah_p2m WHERE bukti_bayar != null or bukti_bayar != "" AND status_bayar = 0');
+        $query3 = $this->db->query('SELECT COUNT(bukti_bayar) AS jumlah FROM pemakalah_p2m WHERE bukti_bayar != null or bukti_bayar != "" AND status_bayar = 1');
+        $content['jumlah_belum_upload_pkm'] = $query1->row_array();
+        $content['jumlah_menunggu_konfirmasi_pkm'] = $query2->row_array();
+        $content['jumlah_sukses_pkm'] = $query3->row_array();
 
         $this->load->view('admin_template/header', $data);
         $this->load->view('admin/index', $content);
