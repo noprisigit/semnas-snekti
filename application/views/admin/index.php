@@ -55,9 +55,9 @@
 											<span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
 
 											<div class="info-box-content">
-													<span class="info-box-text">Belum Bayar</span>
+													<span class="info-box-text">Belum Upload Bukti</span>
 													<span class="info-box-number">
-														<?= $peserta_belum_bayar; ?>
+														<?= $peserta_belum_upload['jumlah']; ?>
 														<small>Orang</small>
 													</span>
 											</div>
@@ -75,9 +75,9 @@
 											<span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
 											<div class="info-box-content">
-													<span class="info-box-text">Kehadiran</span>
+													<span class="info-box-text">Perlu Konfirmasi</span>
 													<span class="info-box-number">
-														<?= $kehadiran_peserta_semnas; ?>
+														<?= $peserta_menunggu_konfirmasi['jumlah']; ?>
 														<small>Orang</small>
 													</span>
 											</div>
@@ -91,9 +91,9 @@
 											<span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
 											<div class="info-box-content">
-													<span class="info-box-text">Ketidakhadiran</span>
+													<span class="info-box-text">Pembayaran Sukses</span>
 													<span class="info-box-number">
-														<?= $ketidakhadiran_peserta_semnas; ?>
+														<?= $peserta_sukses['jumlah']; ?>
 														<small>Orang</small>
 													</span>
 											</div>

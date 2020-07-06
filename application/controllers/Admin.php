@@ -27,10 +27,12 @@ class Admin extends CI_Controller {
 
         // seminar nasional
         $content['jumlah_peserta_semnas'] = $this->db->count_all_results('registrasi');
-		
-        $content['peserta_belum_bayar'] = $this->db->where('status_bayar', 0)->count_all_results('registrasi');;
-        $content['kehadiran_peserta_semnas'] = $this->db->where('status_kehadiran', 1)->count_all_results('registrasi');
-        $content['ketidakhadiran_peserta_semnas'] = $this->db->where('status_kehadiran', 0)->count_all_results('registrasi');
+        $query7 = $this->db->query('SELECT COUNT(bukti_bayar) AS jumlah FROM registrasi WHERE bukti_bayar = null or bukti_bayar = "" AND status_pembayaran = 0');
+        $query8 = $this->db->query('SELECT COUNT(bukti_bayar) AS jumlah FROM registrasi WHERE bukti_bayar != null or bukti_bayar != "" AND status_pembayaran = 1');
+        $query9 = $this->db->query('SELECT COUNT(bukti_bayar) AS jumlah FROM registrasi WHERE bukti_bayar != null or bukti_bayar != "" AND status_pembayaran = 2');
+        $content['peserta_belum_upload'] = $query7->row_array();
+        $content['peserta_menunggu_konfirmasi'] = $query8->row_array();
+        $content['peserta_sukses'] = $query9->row_array();
 
         // call for paper
         $content['jumlah_tim'] = $this->db->count_all_results('pemakalah');
