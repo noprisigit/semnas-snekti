@@ -37,12 +37,12 @@
 
 <body class="body-class index_2 home2">
 	<!--Start Preloader-->
-	<div class="site-preloader">
+	<!-- <div class="site-preloader">
 		<div class="spinner">
 			<div class="double-bounce1"></div>
 			<div class="double-bounce2"></div>
 		</div>
-	</div>
+	</div> -->
 	<!--End Preloader-->
 
 	<!--Start Body Wrap-->

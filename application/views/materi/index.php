@@ -25,7 +25,7 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped data-tables">
+                            <table id="materi-tables" class="table table-bordered table-striped data-tables">
                                 <thead>
                                     <tr>
                                         <th>No</th>

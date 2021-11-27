@@ -32,6 +32,7 @@
 
     <script>
         $(document).ready(function() {
+           $('#materi-tables').DataTable();
             $('#data-table-semnas').DataTable();
             $('#data-pembayaran-semnas').DataTable();
             $('#data-paper').DataTable({

@@ -171,6 +171,7 @@ class Admin extends CI_Controller {
 
         $this->_sendEmail($peserta);
         
+        $this->db->set('status_pembayaran', 2);
         $this->db->set('status_bayar', '1');
         $this->db->where('kode', $kode);
         $this->db->update('registrasi');
